@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BoostRise – AI Automation Agency</title>
+
+  <style>
+    :root{
+      /* Base theme */
+      --bg:#0B0F1A;
+      --text:#E7ECF7;
+      --muted:#9FB2CD;
+      --card:#101626;
+      --line:#1A2440;
+
+      /* Accent */
+      --accent:#11C4AC;
+
+      /* UI tokens */
+      --radius:18px;
+      --radius-sm:12px;
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+      --max:1100px;
+    }
+
+    html,body{height:100%}
+    body{
+      margin:0; background:var(--bg); color:var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+      line-height:1.6;
+    }
+    *{box-sizing:border-box}
+    a{color:var(--accent); text-decoration:none}
+    a:hover{opacity:.95}
+    .container{max-width:var(--max); margin:0 auto; padding:0 20px}
+    .section{padding:72px 0}
+    h1,h2,h3{line-height:1.2; margin:0 0 14px}
+    h1{font-size:clamp(32px,5vw,54px)}
+    h2{font-size:clamp(24px,3.5vw,36px)}
+    p.lead{font-size:clamp(16px,2.2vw,20px); color:var(--muted)}
+    .card{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow)}
+
+    /* Grid helpers */
+    .grid{display:grid; gap:18px}
+    @media(min-width:760px){
+      .cols-2{grid-template-columns:repeat(2,1fr)}
+      .cols-3{grid-template-columns:repeat(3,1fr)}
+      .cols-4{grid-template-columns:repeat(4,1fr)}
+    }
+
+    /* Header */
+    header{
+      position:sticky; top:0; z-index:40;
+      backdrop-filter:saturate(140%) blur(8px);
+      background:linear-gradient( to bottom, rgba(11,15,26,.85), rgba(11,15,26,.55) );
+      border-bottom:1px solid var(--line);
+    }
+    .nav{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:10px 0}
+
+    /* >>> MOD: logo 420px magas, bal oldalon marad <<< */
+    .logo{
+      height:420px;
+      width:auto;
+      display:block;
+      margin:0;
+    }
+
+    .logo-fallback{
+      width:160px; height:44px; display:flex; align-items:center; justify-content:center;
+      border-radius:10px; background:#0f1424; border:1px dashed #283352; color:#6f84a7; font-size:12px;
+    }
+    .links{display:flex; gap:14px; align-items:center; flex-wrap:wrap}
+    .btn{display:inline-flex; align-items:center; gap:10px; padding:12px 18px; border-radius:14px; border:1px solid transparent; background:var(--accent); color:#062a24; font-weight:700}
+    .btn:hover{filter:saturate(110%) brightness(1.04)}
+    .btn-outline{background:transparent; color:var(--text); border-color:#29405b}
+    .btn-outline:hover{background:#0f1628}
+
+    /* Hero */
+    .hero{padding:84px 0 36px; display:grid; gap:26px}
+    .metric{padding:16px; border-radius:var(--radius-sm); background:linear-gradient(180deg, #0E1629, #0B1121); border:1px solid var(--line); color:#cfe4ff; font-weight:600}
+    .cta-row{display:flex; gap:12px; flex-wrap:wrap; align-items:center}
+    .embed-box{margin-top:18px; border-radius:var(--radius); overflow:hidden; border:1px solid var(--line); background:#0E1425}
+    .embed-note{padding:12px 14px; font-size:13px; color:#8aa2c1; border-bottom:1px solid var(--line); background:linear-gradient(180deg,#0f1628,#0b1222)}
+    iframe.form{width:100%; height:640px; border:0; display:block; background:#0B0F1A}
+
+    /* Benefits */
+    .benefit-card{padding:18px; border:1px solid var(--line); border-radius:16px; background:#0E1527}
+    .benefit-card h3{margin:0 0 8px}
+
+    /* Contact (Martell-style) */
+    .contact-wrap{display:grid; grid-template-columns:1fr; gap:22px; align-items:center}
+    @media(min-width:980px){ .contact-wrap{grid-template-columns:1fr 1.4fr 1fr} }
+    .social-col{display:flex; flex-direction:column; gap:18px; align-items:flex-start}
+    .social-item{display:flex; align-items:center; gap:12px}
+    .circle{
+      width:46px; height:46px; border-radius:50%;
+      background:#0f1628; border:1px solid var(--line); display:grid; place-items:center;
+    }
+    .circle:hover{background:#12203a}
+    .social-item span{font-weight:700; color:#cfe4ff}
+    .contact-center{ text-align:center; padding:24px; }
+    .contact-cta{ display:inline-flex; padding:16px 28px; font-size:18px; border-radius:18px; background:var(--accent); color:#062a24; font-weight:800; border:1px solid transparent}
+    .contact-cta:hover{filter:saturate(110%) brightness(1.04)}
+    .email{margin-top:10px}
+
+    /* Privacy section */
+    .privacy p{color:var(--muted); margin:10px 0}
+
+    /* Footer */
+    footer{border-top:1px solid var(--line); padding:24px 0 60px; color:#90a6c2}
+    footer .frow{display:flex; align-items:center; justify-content:center; gap:14px; flex-wrap:wrap}
+    footer nav a{color:#b8c6dc; margin:0 8px}
+    footer nav a:hover{color:#e7ecf7}
+
+    /* Simple SVG icons look crisp on dark */
+    svg{display:block}
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container nav">
+      <!-- LOGO: upload your file to assets/webpage-logo.png -->
+      <div>
+        <img src="assets/webpage-logo.png" alt="BoostRise logo" class="logo" onerror="
+          this.style.display='none';
+          this.nextElementSibling.style.display='flex';
+        ">
+        <div class="logo-fallback" style="display:none">Add your logo at assets/webpage-logo.png</div>
+      </div>
+      <nav class="links">
+        <a class="btn-outline" href="#benefits">Benefits</a>
+        <a class="btn-outline" href="#contact">Contact</a>
+        <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSfs1RSm9co3AoDlzAAcLC3mOncX67r7KG1k9yW4QTf1fHDI6Q/viewform?usp=header" target="_blank" rel="noopener">Let’s partner up</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="section hero container" id="hero">
+      <div>
+        <h1>Boost your business to <span style="color:var(--accent)">Rise with AI</span></h1>
+        <p class="lead">“AI automation that frees your people and fuels your company’s growth.”</p>
+
+        <!-- Three cards -->
+        <div class="grid cols-3" style="margin-top:12px">
+          <div class="metric"><strong>Freedom from Repetition</strong><br><span style="font-weight:500">Your team focuses on meaningful, creative work.</span></div>
+          <div class="metric"><strong>Accelerated Revenue</strong><br><span style="font-weight:500">Lower overhead, higher margins, more capacity.</span></div>
+          <div class="metric"><strong>Competitive Edge</strong><br><span style="font-weight:500">Automate first, grow faster than your competitors.</span></div>
+        </div>
+
+        <div class="cta-row" style="margin-top:14px">
+          <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSfs1RSm9co3AoDlzAAcLC3mOncX67r7KG1k9yW4QTf1fHDI6Q/viewform?usp=header" target="_blank" rel="noopener">Let’s partner up</a>
+          <a class="btn-outline" href="#benefits">See benefits</a>
+        </div>
+      </div>
+
+      <!-- Embedded Google Form -->
+      <div id="lead-form" class="embed-box card">
+        <div class="embed-note">
+          Embedded Google Form below. If you don’t need an embed, you can remove this whole box.
+        </div>
+        <iframe class="form" title="Lead form (Google Form embed)"
+          src="https://docs.google.com/forms/d/e/1FAIpQLSfs1RSm9co3AoDlzAAcLC3mOncX67r7KG1k9yW4QTf1fHDI6Q/viewform?embedded=true"
+          loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </section>
+
+    <!-- BENEFITS -->
+    <section class="section container" id="benefits">
+      <h2>The Benefits of AI Automation</h2>
+      <div class="grid cols-4" style="margin-top:10px">
+        <div class="benefit-card">
+          <h3>Time = Growth</h3>
+          <p>AI takes over repetitive tasks so you focus on strategic, revenue-driving work.</p>
+        </div>
+        <div class="benefit-card">
+          <h3>Profit Accelerator</h3>
+          <p>Cut costs and create capacity — serve more clients with the same team.</p>
+        </div>
+        <div class="benefit-card">
+          <h3>Scalable Foundation</h3>
+          <p>Automated processes scale without costs growing linearly.</p>
+        </div>
+        <div class="benefit-card">
+          <h3>Reliability & Trust</h3>
+          <p>Consistent, on-time, accurate execution builds client trust.</p>
+        </div>
+        <div class="benefit-card">
+          <h3>Market Advantage</h3>
+          <p>Automate first, grow first — stay ahead while others fight manually.</p>
+        </div>
+        <div class="benefit-card">
+          <h3>Motivated Teams</h3>
+          <p>Remove boring work; people focus on meaningful, creative tasks.</p>
+        </div>
+        <div class="benefit-card">
+          <h3>Calm Operations</h3>
+          <p>Smoother workflows mean less firefighting and better CX.</p>
+        </div>
+        <div class="benefit-card">
+          <h3>The BoostRise Effect</h3>
+          <p>More time → more revenue → more reinvestment → exponential growth.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT (Martell-style) -->
+    <section class="section container card" id="contact" style="padding:24px">
+      <div class="contact-wrap">
+        <!-- LEFT: IG → YT → X -->
+        <div class="social-col">
+          <a class="social-item" href="https://www.instagram.com/boostrise_hq" target="_blank" rel="noopener">
+            <span class="circle" aria-hidden="true">
+              <!-- IG icon -->
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <rect x="3" y="3" width="18" height="18" rx="5" stroke="#7fbfe5"/>
+                <circle cx="12" cy="12" r="4.2" stroke="#7fbfe5"/>
+                <circle cx="17.5" cy="6.5" r="1.2" fill="#7fbfe5"/>
+              </svg>
+            </span>
+            <span>Instagram</span>
+          </a>
+          <a class="social-item" href="https://www.youtube.com/@bulcsubano" target="_blank" rel="noopener">
+            <span class="circle" aria-hidden="true">
+              <!-- YT icon -->
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <rect x="3" y="6" width="18" height="12" rx="3" stroke="#7fbfe5"/>
+                <polygon points="10,9 16,12 10,15" fill="#7fbfe5"/>
+              </svg>
+            </span>
+            <span>YouTube</span>
+          </a>
+          <a class="social-item" href="https://x.com/BoostRise_HQ" target="_blank" rel="noopener">
+            <span class="circle" aria-hidden="true">
+              <!-- X icon -->
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M4 4l16 16M20 4L4 20" stroke="#7fbfe5" stroke-width="2.2"/>
+              </svg>
+            </span>
+            <span>X</span>
+          </a>
+        </div>
+
+        <!-- CENTER: CTA + email -->
+        <div class="contact-center">
+          <a class="contact-cta" href="https://docs.google.com/forms/d/e/1FAIpQLSfs1RSm9co3AoDlzAAcLC3mOncX67r7KG1k9yW4QTf1fHDI6Q/viewform?usp=header" target="_blank" rel="noopener">Let’s partner up</a>
+          <p class="email"><strong>Email:</strong> <a href="mailto:info@boostrise.dev">info@boostrise.dev</a></p>
+        </div>
+
+        <!-- RIGHT: TikTok → FB → LinkedIn -->
+        <div class="social-col" style="align-items:flex-end">
+          <a class="social-item" href="https://www.tiktok.com/@boostrise_hq" target="_blank" rel="noopener" style="flex-direction:row-reverse">
+            <span class="circle" aria-hidden="true">
+              <!-- TikTok icon -->
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M14 4c0 4 3 6 6 6" stroke="#7fbfe5" stroke-width="2"/>
+                <path d="M10 8a5 5 0 100 10c2.8 0 4-1.9 4-4V5" stroke="#7fbfe5" stroke-width="2"/>
+              </svg>
+            </span>
+            <span>TikTok</span>
+          </a>
+          <a class="social-item" href="https://www.facebook.com/profile.php?id=61578695933948" target="_blank" rel="noopener" style="flex-direction:row-reverse">
+            <span class="circle" aria-hidden="true">
+              <!-- FB icon -->
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M14 8h3V5h-3c-1.7 0-3 1.3-3 3v3H8v3h3v5h3v-5h3l1-3h-4V8c0-.6.4-1 1-1z" fill="#7fbfe5"/>
+              </svg>
+            </span>
+            <span>Facebook</span>
+          </a>
+          <a class="social-item" href="https://www.linkedin.com/in/bulcsubano" target="_blank" rel="noopener" style="flex-direction:row-reverse">
+            <span class="circle" aria-hidden="true">
+              <!-- LinkedIn icon -->
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <rect x="3" y="3" width="18" height="18" rx="3" stroke="#7fbfe5"/>
+                <rect x="6.5" y="10" width="2.5" height="7" fill="#7fbfe5"/>
+                <circle cx="7.8" cy="7.2" r="1.3" fill="#7fbfe5"/>
+                <path d="M12 17v-4.3c0-1.1.9-2 2-2s2 .9 2 2V17" stroke="#7fbfe5" stroke-width="2"/>
+              </svg>
+            </span>
+            <span>LinkedIn</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRIVACY (collapsible) -->
+    <section class="section container privacy" id="privacy">
+      <!-- >>> MOD: összecsukható <<< -->
+      <details>
+        <summary style="cursor:pointer; font-weight:800; color:var(--accent);">Privacy Policy</summary>
+        <div>
+          <p><strong>1. Introduction</strong><br>
+            Welcome to BoostRise. Your privacy is important to us, and we are committed to protecting your personal data. This privacy policy explains how we handle your information in accordance with applicable data protection laws, and informs you of your privacy rights.</p>
+          <p><strong>2. Important Information and Who We Are</strong><br>
+            BoostRise is the controller and responsible for your personal data collected through this website and related services.</p>
+          <p><strong>3. The Data We Collect About You</strong><br>
+            We may collect Identity Data (e.g., name), Contact Data (e.g., email), and Technical Data (e.g., device, browser, interaction data). We do not knowingly collect sensitive personal information.</p>
+          <p><strong>4. How Is Your Personal Data Collected?</strong><br>
+            Through direct interactions (e.g., forms, email) and automated technologies (e.g., cookies/analytics).</p>
+          <p><strong>5. How We Use Your Personal Data</strong><br>
+            We process data only when lawful and necessary, including to respond to inquiries, provide services, improve our site, and comply with legal obligations.</p>
+          <p><strong>6. Data Security</strong><br>
+            We use appropriate technical and organizational measures to protect your data from unauthorized access, alteration, or disclosure.</p>
+          <p><strong>7. Data Retention</strong><br>
+            We retain personal data only as long as necessary for the purposes outlined in this policy, unless a longer period is required by law.</p>
+          <p><strong>8. Your Legal Rights</strong><br>
+            Depending on your location, you may have rights to access, correct, delete, object to processing, or request portability of your data. Contact us to exercise these rights.</p>
+          <p><strong>9. International Transfers</strong><br>
+            If data is transferred across borders, we ensure it is protected in line with applicable legal requirements.</p>
+          <p><strong>10. Third-Party Links</strong><br>
+            Our website may link to external sites we do not operate. We are not responsible for their content or privacy practices.</p>
+          <p><strong>11. Contact Details</strong><br>
+            Email: <a href="mailto:info@boostrise.dev">info@boostrise.dev</a></p>
+          <p><strong>12. Changes to the Privacy Policy</strong><br>
+            We may update this policy from time to time. Updates will appear on this page with a revised date.</p>
+        </div>
+      </details>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container frow">
+      <div id="copy">© <span id="year"></span> BoostRise</div>
+      <nav>
+        <a href="#hero">Home</a>·
+        <a href="#contact">Contact</a>·
+        <a href="#privacy">Privacy</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- Minimal JS: smooth scroll + dynamic year + auto-open privacy -->
+  <script>
+    // Smooth in-page anchors
+    document.addEventListener('click', function(e){
+      const a = e.target.closest('a[href^="#"]');
+      if(!a) return;
+      const id = a.getAttribute('href').slice(1);
+      if(!id) return;
+      const el = document.getElementById(id);
+      if(!el) return;
+      e.preventDefault();
+      el.scrollIntoView({behavior:'smooth', block:'start'});
+      history.pushState(null, '', '#'+id);
+    });
+
+    // Dynamic copyright year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Auto-open Privacy when navigated via #privacy
+    const priv = document.querySelector('#privacy details');
+    if (location.hash === '#privacy' && priv) priv.open = true;
+    window.addEventListener('hashchange', () => {
+      if (location.hash === '#privacy' && priv) priv.open = true;
+    });
+  </script>
+</body>
+</html>
