@@ -119,11 +119,34 @@
 </head>
 <body>
 
+  <style>
+  /* --- HEADER FIX: nagy logo, vékony header, bal szélre igazítva --- */
+  header{ overflow:visible; }                 /* engedjük kilógni a nagy logót lefelé */
+  .nav{ padding:8px 0; }                      /* kompaktabb felső sáv */
+  
+  .logo-wrap{
+    position:relative;
+    height:72px;                              /* ez lesz a header „valódi” magassága */
+  }
+  
+  .logo{
+    position:absolute;                        /* a nagy képet „ráültetjük” a headerre */
+    left:0;                                   /* pontosan a container bal szélén kezdődik */
+    top:calc(50% - 210px);                    /* 420/2 = 210 — középről lógjon le */
+    height:420px;
+    width:auto;
+    margin:0;
+  }
+  
+  .links{ display:flex; gap:14px; align-items:center; flex-wrap:nowrap; }
+  .links a{ white-space:nowrap; }
+  </style>  
+    
   <!-- HEADER -->
   <header>
     <div class="container nav">
       <!-- LOGO: upload your file to assets/webpage-logo.png -->
-      <div>
+      <div class="logo-wrap">
         <img src="assets/webpage-logo.png" alt="BoostRise logo" class="logo" onerror="
           this.style.display='none';
           this.nextElementSibling.style.display='flex';
