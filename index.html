@@ -21,9 +21,21 @@
   display: none;
 }
     
-    /* HEADER fine-tune: logo closer to the left edge */
-header .container{ padding-left:200px; }
-.logo{ transform: translateX(-6px); } /* finom balratolás */
+    * HEADER — clean alignment + compact height */
+.nav{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:8px 0}
+header .container{ padding-left:0 }                /* a logo ott kezdődjön, ahol a hero szöveg */
+.logo{ height:56px; width:auto; display:block; margin:0 } /* normál, nem csúszik középre */
+
+/* Ne törjön le a CTA gomb a linkek alá asztali nézetben */
+.links{display:flex; gap:14px; align-items:center; flex-wrap:nowrap}
+.links a{ white-space:nowrap }
+
+/* Mobilon azért engedjük a törést és picit kisebb paddinget adunk a gombnak */
+@media (max-width:900px){
+  .links{flex-wrap:wrap}
+  .btn{ padding:10px 14px }
+}
+
     
     :root{
       /* Base theme (from your brief) */
@@ -77,12 +89,7 @@ header .container{ padding-left:200px; }
     }
     .nav{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:10px 0}
     .logo {
-  height: 420px;
-  width: auto;
-  display: block;
-  margin-top: -140px;
-  margin-bottom: -140px;
-}
+ 
     .logo-fallback{
       width:160px; height:44px; display:flex; align-items:center; justify-content:center;
       border-radius:10px; background:#0f1424; border:1px dashed #283352; color:#6f84a7; font-size:12px;
@@ -308,7 +315,18 @@ header .container{ padding-left:200px; }
 
     <!-- PRIVACY (One-pager section) -->
     <section class="section container privacy" id="privacy">
-      <h2>Privacy Policy</h2>
+  <details>
+    <summary style="cursor:pointer; list-style:none; display:flex; align-items:center; gap:10px;
+      padding:14px 16px; border:1px solid var(--line); border-radius:var(--radius);
+      background:#0E1527; font-weight:800; color:#cfe4ff;">
+      <span>Privacy Policy</span>
+      <!-- kis nyíl -->
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="margin-left:auto">
+        <path d="M6 9l6 6 6-6" stroke="#7fbfe5" stroke-width="2"/>
+      </svg>
+    </summary>
+
+    <div class="card" style="margin-top:12px; padding:18px">
       <p><strong>1. Introduction</strong><br>
         Welcome to BoostRise. Your privacy is important to us, and we are committed to protecting your personal data. This privacy policy explains how we handle your information in accordance with applicable data protection laws, and informs you of your privacy rights.</p>
       <p><strong>2. Important Information and Who We Are</strong><br>
@@ -333,7 +351,10 @@ header .container{ padding-left:200px; }
         Email: <a href="mailto:info@boostrise.dev">info@boostrise.dev</a></p>
       <p><strong>12. Changes to the Privacy Policy</strong><br>
         We may update this policy from time to time. Updates will appear on this page with a revised date.</p>
-    </section>
+    </div>
+  </details>
+</section>
+
 
   </main>
 
